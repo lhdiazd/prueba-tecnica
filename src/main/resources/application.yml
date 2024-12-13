@@ -1,0 +1,25 @@
+spring:
+    application:
+        name: prueba-tecnica
+
+    datasource:
+        url: jdbc:h2:mem:tecnicadb
+        username: admin
+        password: 1234
+        driver-class-name: org.h2.Driver
+
+    jpa:
+        database-platform: org.hibernate.dialect.H2Dialect
+        hibernate:
+            ddl-auto: update
+
+        defer-datasource-initialization: true
+
+    sql:
+        init:
+            mode: always
+
+    h2:
+        console:
+            enabled: true
+
