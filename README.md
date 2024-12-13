@@ -24,9 +24,9 @@ Para compilar y ejecutar el proyecto necesitas tener instalada la siguiente tecn
 
 2. **Instalar Dependencias:**:
    1. Navega al directorio del proyecto.
-   2. Instala las dependencias utilizando Maven:
+   2. El comando "mvn clean install" compilará y ejecutará los tests unitarios. Es preferible utilizar el siguiente comando:
    ```bash
-   mvn clean install
+   mvn clean install -DskipTests
 
 3. **Compilar y Ejecutar la Aplicación:**:
    ```bash
