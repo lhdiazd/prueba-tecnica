@@ -28,7 +28,7 @@ public class ContactView extends JFrame {
 
         setTitle("Gestión de Contactos");
         setSize(new Dimension(600, 400));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // Asegúrate de que se cierre el marco correctamente
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         customizeTitleBar();
@@ -36,22 +36,22 @@ public class ContactView extends JFrame {
         model = new DefaultTableModel();
         table = new JTable(model);
 
-        // Configurar las columnas de la tabla
-        model.addColumn("ID");       // Nueva columna para el ID
+        // Configuración de las columnas de la tabla
+        model.addColumn("ID");       
         model.addColumn("Nombre");        
         model.addColumn("Email");
         model.addColumn("Fono");
 
-        // Agregar la tabla al JScrollPane
+        // Se agrega la tabla al JScrollPane
         JScrollPane scrollPane = new JScrollPane(table);
         add(scrollPane, BorderLayout.CENTER);
 
-        // Crear botones para agregar y editar contactos
+        // Creación de botones para agregar y editar contactos
         addContactButton = new JButton("Nuevo");
-        editContactButton = new JButton("Editar"); // Botón para editar
+        editContactButton = new JButton("Editar"); 
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(addContactButton);
-        buttonPanel.add(editContactButton); // Añadimos el botón de editar
+        buttonPanel.add(editContactButton); 
         add(buttonPanel, BorderLayout.SOUTH);
 
         addContactButton.addActionListener(new ActionListener() {
@@ -68,7 +68,7 @@ public class ContactView extends JFrame {
             }
         });
 
-        loadContacts(); // Cargar los contactos iniciales
+        loadContacts(); // Carga los contactos iniciales
     }
 
     private void customizeTitleBar() {
@@ -84,12 +84,12 @@ public class ContactView extends JFrame {
     public void loadContacts() {
         try {
             List<Contact> contacts = contactService.getAllContacts();
-            model.setRowCount(0); // Limpiar las filas existentes
+            model.setRowCount(0); // Limpia las filas existentes
             for (Contact contact : contacts) {
-                String fullName = contact.getFirstName() + " " + contact.getLastName(); // Concatenar nombre y apellido
+                String fullName = contact.getFirstName() + " " + contact.getLastName(); // Concatena nombre y apellido
                 model.addRow(new Object[]{
-                    contact.getId(),         // Mostrar el ID
-                    fullName,               // Mostrar nombre completo
+                    contact.getId(),         
+                    fullName,              
                     contact.getEmail(),
                     contact.getPhone()
                 });
@@ -102,7 +102,7 @@ public class ContactView extends JFrame {
     public void showAddContactDialog() {
         try {
             ContactDialog dialog = new ContactDialog(this, contactService);
-            dialog.setVisible(true); // Abrir el diálogo para agregar un nuevo contacto
+            dialog.setVisible(true); 
         } catch (Exception e) {
             showErrorMessage("Error al mostrar el diálogo de agregar contacto: " + e.getMessage());
         }
@@ -112,9 +112,9 @@ public class ContactView extends JFrame {
         try {
             int selectedRow = table.getSelectedRow();
             if (selectedRow != -1) {
-                Long id = (Long) model.getValueAt(selectedRow, 0); // Obtener el ID
+                Long id = (Long) model.getValueAt(selectedRow, 0); // Obteniene el ID
 
-                // Buscar el contacto en la base de datos
+                // Busca el contacto en la base de datos
                 Contact selectedContact = contactService.findContactById(id);
                 if (selectedContact != null) {
                     String firstName = selectedContact.getFirstName();
@@ -122,11 +122,11 @@ public class ContactView extends JFrame {
                     String email = selectedContact.getEmail();
                     String phone = selectedContact.getPhone();
 
-                    // Crear un nuevo objeto Contact con los datos actuales para la edición
+                    // Crea un nuevo objeto Contact con los datos actuales para la edición
                     Contact contactForEdit = new Contact(id, firstName, lastName, email, phone);
 
                     ContactEditDialog dialog = new ContactEditDialog(this, contactService, contactForEdit);
-                    dialog.setVisible(true); // Abrir el diálogo para modificar un contacto
+                    dialog.setVisible(true); 
                 } else {
                     showErrorMessage("No se encontró el contacto para editar.");
                 }

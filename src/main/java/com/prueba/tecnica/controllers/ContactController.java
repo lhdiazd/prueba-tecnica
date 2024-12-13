@@ -9,12 +9,18 @@ import com.prueba.tecnica.views.ContactView;
 @Controller
 public class ContactController {
     private final IContactService contactService;
+
     @Autowired
     public ContactController(IContactService contactService) {
         this.contactService = contactService;
     }
 
+    /**
+     * Muestra la vista inicial de contactos.
+     *
+     * @param contactView Vista de contactos que se mostrará.
+     */
     public void showContactView(ContactView contactView) {
-        contactView.showView(); // Mostrar la vista inicial de contactos
+        contactView.showView(); 
     }
 }

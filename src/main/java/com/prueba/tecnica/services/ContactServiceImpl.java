@@ -10,8 +10,7 @@ import com.prueba.tecnica.repositories.ContactRepository;
 
 @Service
 public class ContactServiceImpl implements IContactService {
-
-	@Autowired
+    @Autowired
     private ContactRepository contactRepository;
 
     @Override
@@ -21,22 +20,20 @@ public class ContactServiceImpl implements IContactService {
 
     @Override
     public void saveContact(Contact contact) {
-        contactRepository.save(contact); // Guardar el contacto en la base de datos
+        contactRepository.save(contact); // Persiste el contacto
     }
     
     @Override
     public void updateContact(Contact contact) {
         if (contact.getId() != null && contactRepository.existsById(contact.getId())) {
-        	
-            contactRepository.save(contact); // Actualizar el contacto existente
+            contactRepository.save(contact); // Actualiza el contacto si existe
         } else {
             throw new IllegalArgumentException("No se puede actualizar un contacto que no existe.");
         }
     }
 
-	@Override
-	public Contact findContactById(Long id) {		
-		return contactRepository.findById(id).orElse(null);
-	}
-
+    @Override
+    public Contact findContactById(Long id) {
+        return contactRepository.findById(id).orElse(null); // Ecuentra un contacto por su ID
+    }
 }

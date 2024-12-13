@@ -19,7 +19,7 @@ public class SpringBootSwingCommandLineRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        // Boot the GUI on the Event Dispatch Thread
+        // Ejecuta el método showContactView en un hilo separado para inicializar la interfaz gráfica Swing
         EventQueue.invokeLater(() -> controller.showContactView(contactView));
     }
 }

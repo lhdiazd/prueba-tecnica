@@ -17,32 +17,41 @@ public class ContactDialog extends JDialog {
     private IContactService contactService;
 
     public ContactDialog(ContactView parentView, IContactService contactService) {
-        super(parentView, "Agregar Contacto", true); // modal dialog
+        super(parentView, "Agregar Contacto", true);
         this.contactService = contactService;
 
         setLayout(new BorderLayout());
-        customizeDialogTitle(); // Aplicar el estilo al título
+        customizeDialogTitle(); // Aplica el estilo al título
 
         JPanel formPanel = new JPanel();
         formPanel.setLayout(new BorderLayout());
 
         JPanel fieldsPanel = new JPanel();
-        fieldsPanel.setLayout(new GridLayout(5, 2, 10, 10)); // Ajustar diseño de campos
+        fieldsPanel.setLayout(new GridLayout(5, 2, 10, 10)); // Ajusta el diseño de campos
         fieldsPanel.setBorder(BorderFactory.createEmptyBorder(5, 20, 0, 20));
+
+        // Campo Nombre
         fieldsPanel.add(new JLabel("Nombre:"));
         firstNameField = new JTextField(20);
+        firstNameField.setToolTipText("Ingrese el nombre del contacto"); // Tooltip
         fieldsPanel.add(firstNameField);
 
+        // Campo Apellido
         fieldsPanel.add(new JLabel("Apellido:"));
         lastNameField = new JTextField(20);
+        lastNameField.setToolTipText("Ingrese el apellido del contacto"); // Tooltip
         fieldsPanel.add(lastNameField);
 
+        // Campo Email
         fieldsPanel.add(new JLabel("Email:"));
         emailField = new JTextField(20);
+        emailField.setToolTipText("Ingrese el correo electrónico del contacto (formato: ejemplo@correo.com)"); // Tooltip
         fieldsPanel.add(emailField);
 
+        // Campo Teléfono
         fieldsPanel.add(new JLabel("Fono:"));
         phoneField = new JTextField(20);
+        phoneField.setToolTipText("Ingrese el número de teléfono del contacto (opcional)"); // Tooltip
         fieldsPanel.add(phoneField);
 
         formPanel.add(fieldsPanel, BorderLayout.CENTER);
@@ -75,7 +84,7 @@ public class ContactDialog extends JDialog {
         formPanel.add(buttonsPanel, BorderLayout.SOUTH);
 
         add(formPanel, BorderLayout.CENTER);
-        setSize(new Dimension(400, 250)); // Aumentar tamaño del cuadro de diálogo
+        setSize(new Dimension(400, 250)); // Aumenta el tamaño del cuadro de diálogo
         setLocationRelativeTo(parentView);
     }
 
@@ -99,11 +108,11 @@ public class ContactDialog extends JDialog {
             throw new Exception("Nombre, Apellido y Email son obligatorios");
         }
 
-        if (!email.matches("^\\S+@\\S+\\.\\S+$")) { // Validar formato de correo
+        if (!email.matches("^\\S+@\\S+\\.\\S+$")) { // Valida el formato de correo
             throw new Exception("Correo electrónico no válido");
         }
 
-        if (!phone.isEmpty() && !phone.matches("^\\d+$")) { // Validar formato de número telefónico si se ingresa
+        if (!phone.isEmpty() && !phone.matches("^\\d+$")) { // Valida el formato de número telefónico si se ingresa
             throw new Exception("Número telefónico no válido");
         }
 
@@ -117,4 +126,3 @@ public class ContactDialog extends JDialog {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
     }
 }
-
