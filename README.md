@@ -20,7 +20,7 @@ Para compilar y ejecutar el proyecto necesitas tener instalada la siguiente tecn
    2. Usa el siguiente comando para clonar el proyecto desde GitHub (o cualquier otra plataforma de control de versiones):
 
    ```bash
-   git clone https://github.com/[tu_usuario]/[nombre_de_tu_repositorio].git
+   git clone https://github.com/lhdiazd/prueba-tecnica.git
 
 2. **Instalar Dependencias:**:
    1. Navega al directorio del proyecto.
